@@ -13,32 +13,20 @@ class Solution {
         int ans=-1;
         while(low<=high){
             int mid=(low+high)/2;
-            int count=0;
-            int i=0;
-            while(i<n){
-                if(k==1){
-                    if(bloomDay[i]<=mid){
-                        count++;
+            int flowers=0;
+            int bouquets=0;
+            for(int day : bloomDay){
+                if(day<=mid){
+                    flowers++;
+                    if(flowers==k){
+                        bouquets++;
+                        flowers=0;
                     }
-                    i++;
-                    continue;
-                }
-                int t=k-1;
-                while(t!=0){
-                    if(i<n-1 && bloomDay[i]<=mid && bloomDay[i+1]<=mid){
-                        t--;
-                        i++;
-                    }else{
-                        i++;
-                        break;
-                    }
-                }
-                if(t==0){
-                    count++;
-                    i++;
+                }else{
+                    flowers=0;
                 }
             }
-            if(count>=m){
+            if(bouquets>=m){
                 ans=mid;
                 high=mid-1;
             }else{
