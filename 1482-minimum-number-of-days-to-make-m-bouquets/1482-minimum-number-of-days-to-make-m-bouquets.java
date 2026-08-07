@@ -2,10 +2,10 @@ class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
         int n=bloomDay.length;
         int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
         for(int day:bloomDay){
-            if(day>max){
-                max=day;
-            }
+            min=Math.min(day,min);
+            max=Math.max(day,max);
         }
         int low=1;
         int high=max;
