@@ -1,6 +1,5 @@
 class Solution {
-    public int smallestDivisor(int[] nums, int threshold) {
-        int n=nums.length;
+    public int smallestDivisor(int[] nums, int threshold){
         int max=Integer.MIN_VALUE;
         for(int num:nums){
             max=Math.max(max,num);
@@ -12,7 +11,7 @@ class Solution {
             int mid=(low+high)/2;
             int result=0;
             for(int num :nums){
-                result+=(int)Math.ceil((double)num/mid);
+                result+=(num+mid-1)/mid;
             }
             if(result<=threshold){
                 ans=mid;
