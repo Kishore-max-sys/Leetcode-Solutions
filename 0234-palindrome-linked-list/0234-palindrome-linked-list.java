@@ -16,21 +16,21 @@ class Solution {
             head2=head2.next;
             fast=fast.next.next;
         }
-        ListNode prev=null;
-        ListNode temp=head;
-        while(temp!=null&&temp!=head2){
-            ListNode next=temp.next;
-            temp.next=prev;
-            prev=temp;
-            temp=next;
-        }
-        ListNode tail1=prev;
         if(fast!=null) head2=head2.next;
-        while(tail1!=null&&head2!=null){
-            if(tail1.val!=head2.val){
+        ListNode prev=null;
+        while(head2!=null){
+            ListNode next=head2.next;
+            head2.next=prev;
+            prev=head2;
+            head2=next;
+        }
+        ListNode head1=head;
+        head2=prev;
+        while(head1!=null&&head2!=null){
+            if(head1.val!=head2.val){
                 return false;
             }
-            tail1=tail1.next;
+            head1=head1.next;
             head2=head2.next;
         }
         return true;
