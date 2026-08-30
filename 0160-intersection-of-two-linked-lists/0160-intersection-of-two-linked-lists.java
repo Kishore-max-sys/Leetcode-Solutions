@@ -14,23 +14,10 @@ public class Solution {
         ListNode tempA=headA;
         while(tempA!=null){
             ListNode tempB=headB;
-            while(tempB!=null){
-                ListNode temp=tempA;
-                while(tempB!=null&&tempB!=tempA){
-                    tempB=tempB.next;
-                }
-                if(tempB!=null){
-                    ListNode intersect=tempB;
-                    while(tempB!=null&&temp!=null&&tempB==temp){
-                        tempB=tempB.next;
-                        temp=temp.next;
-                    }
-                    if(tempB==null&&temp==null){
-                        return intersect;
-                    }
-                    tempB=intersect.next;
-                }
-            } 
+            while(tempB!=null&&tempB!=tempA){
+                tempB=tempB.next;
+            }
+            if(tempB!=null) return tempB;
             tempA=tempA.next;
         }
         return null;
