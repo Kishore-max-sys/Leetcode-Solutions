@@ -16,36 +16,36 @@ class Node {
 class Solution {
     public Node copyRandomList(Node head) {
         if(head==null) return null;
+        HashMap<Node,Integer> map1=new HashMap<>();
+        HashMap<Integer,Node> map2=new HashMap<>();
+        int index=0;
         Node temp=head;
-        Node node=new Node(head.val);
-        Node head1=node;
-        while(temp.next!=null){
-            Node nextNode=new Node(temp.next.val);
-            node.next=nextNode;
-            node=node.next;
-            temp=temp.next;
-        }
-        node.next=null;
-        temp=head;
-        Node temp2=head1;
         while(temp!=null){
-            if(temp.random==null){
+            map1.put(temp,index);
+            Node newNode=new Node(temp.val);
+            map2.put(index,newNode);
+            temp=temp.next;
+            index++;
+        }
+        temp=head;
+        for(int i=0;i<index-1;i++){
+            Node temp2=map2.get(i);
+            temp2.next=map2.get(i+1);
+            if(map1.containsKey(temp.random)){
+                temp2.random=map2.get(map1.get(temp.random));
+            }else{
                 temp2.random=null;
-                temp=temp.next;
-                temp2=temp2.next;
-                continue;
             }
-            Node randomNode=temp.random;
-            Node temp3=head;
-            Node temp4=head1;
-            while(temp3!=randomNode){
-                temp3=temp3.next;
-                temp4=temp4.next;
-            }
-            temp2.random=temp4;
             temp=temp.next;
             temp2=temp2.next;
         }
-        return head1;
+        Node last=map2.get(index-1);
+        last.next=null;
+        if(map1.containsKey(temp.random)){
+            last.random=map2.get(map1.get(temp.random));
+        }else{
+            last.random=null;
+        }
+        return map2.get(0);
     }
 }
