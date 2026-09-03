@@ -3,22 +3,24 @@ class Solution {
         int m=s.length();
         int n=t.length();
         if(m!=n) return false;
-        HashMap<Character,Character> map1=new HashMap<>();
-        HashMap<Character,Character> map2=new HashMap<>();
+        int[] arr1=new int[256];
+        int[] arr2=new int[256];
         for(int i=0;i<m;i++){
-            if(map1.containsKey(s.charAt(i))){
-                if(map1.get(s.charAt(i))!=t.charAt(i)){
+            char ch1=s.charAt(i);
+            char ch2=t.charAt(i);
+            if(arr1[ch1]!=0){
+                if(arr1[ch1]!=ch2){
                     return false;
                 }
             }else{
-                map1.put(s.charAt(i),t.charAt(i));
+                arr1[ch1]=ch2;
             }
-            if(map2.containsKey(t.charAt(i))){
-                if(map2.get(t.charAt(i))!=s.charAt(i)){
+            if(arr2[ch2]!=0){
+                if(arr2[ch2]!=ch1){
                     return false;
                 }
             }else{
-                map2.put(t.charAt(i),s.charAt(i));
+                arr2[ch2]=ch1;
             }
         }
         return true;
