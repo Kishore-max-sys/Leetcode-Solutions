@@ -9,7 +9,7 @@ class Solution {
         int ans=-1;
         while(low<=high){
             int mid=(low+high)/2;
-            int result=0;
+            long result=0;
             for(int num :nums){
                 result+=(num+mid-1)/mid;
             }
