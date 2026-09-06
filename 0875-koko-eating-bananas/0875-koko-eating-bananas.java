@@ -1,10 +1,8 @@
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int max=Integer.MIN_VALUE;
-        for(int num: piles){
-            if(num>max){
-                max=num;
-            }
+        for(int pile: piles){
+            max=Math.max(pile,max);
         }
         int low=1;
         int high=max;
@@ -22,10 +20,10 @@ class Solution {
         }
         return ans;
     }
-    long calTime(int[] arr,int ele){
+    long calTime(int[] piles,int k){
         long total=0;
-        for(int i=0;i<arr.length;i++){
-            total+=(arr[i]+ele-1)/ele;
+        for(int pile:piles){
+            total+=(pile+k-1)/k;
         }
         return total;
     }
