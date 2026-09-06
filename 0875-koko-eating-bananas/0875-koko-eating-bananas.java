@@ -25,7 +25,7 @@ class Solution {
     long calTime(int[] arr,int ele){
         long total=0;
         for(int i=0;i<arr.length;i++){
-            total+=(int)Math.ceil((double)arr[i]/ele);
+            total+=(arr[i]+ele-1)/ele;
         }
         return total;
     }
