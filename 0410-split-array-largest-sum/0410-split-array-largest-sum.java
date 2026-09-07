@@ -8,7 +8,6 @@ class Solution {
         }
         int low = max;
         int high = sum;
-        int ans = high;
         while (low <= high) {
             int mid = (low + high) / 2;
             int count = 1;
@@ -22,12 +21,11 @@ class Solution {
                 }
             }
             if (count <= k) {
-                ans = mid;
                 high = mid - 1;
             } else {
                 low = mid + 1;
             }
         }
-        return ans;
+        return low;
     }
 }
