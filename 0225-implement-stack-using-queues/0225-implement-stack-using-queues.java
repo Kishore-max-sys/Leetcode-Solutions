@@ -5,9 +5,9 @@ class MyStack {
     }
     
     public void push(int x) {
-        q.push(x);
         int s=q.size;
-        for(int i=1;i<s;i++){
+        q.push(x);
+        for(int i=1;i<=s;i++){
             q.push(q.top());
             q.pop();
         }
