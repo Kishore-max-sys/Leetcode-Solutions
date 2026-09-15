@@ -6,23 +6,16 @@ class Solution {
         int maxLength=0;
         ArrayList<Integer> list=new ArrayList<>();
         while(r<n){
-            if(nums[r]==1){
-                maxLength=Math.max(maxLength,r-l+1);
-            }else{
-                if(k>0){
-                    list.add(r);
-                    k--;
-                    maxLength=Math.max(maxLength,r-l+1);
-                }else{
-                    if(list.size()>0){
-                        l=list.get(0)+1;
-                        list.remove(0);
-                        list.add(r);
-                    }else{
-                        l=r+1;
-                    }
-                }
+            if(nums[r]==0){
+                k--;
             }
+            while(k<0){
+                if(nums[l]==0){
+                    k++;
+                }
+                l++;
+            }
+            maxLength=Math.max(maxLength,r-l+1);
             r++;
         }
         return maxLength;
