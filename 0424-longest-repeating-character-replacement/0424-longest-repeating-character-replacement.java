@@ -8,9 +8,11 @@ class Solution {
         while(r<s.length()){
             hash[s.charAt(r)-'A']++;
             maxFreq=Math.max(maxFreq,hash[s.charAt(r)-'A']);
-            if((r-l+1)-maxFreq>k){
+            while((r-l+1)-maxFreq>k){
                 hash[s.charAt(l)-'A']--;
                 l++;
+                maxFreq=0;
+                for(int i=0;i<26;i++) maxFreq=Math.max(maxFreq,hash[i]);
             }
             if((r-l+1)-maxFreq<=k){
                 maxLength=Math.max(maxLength,r-l+1);
