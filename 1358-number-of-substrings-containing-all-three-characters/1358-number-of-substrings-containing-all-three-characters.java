@@ -2,12 +2,17 @@ class Solution {
     public int numberOfSubstrings(String s) {
         int n=s.length();
         int count=0;
-        int[] lastIndex={-1,-1,-1};
-        for(int i=0;i<n;i++){
-            lastIndex[s.charAt(i)-'a']=i;
-            if(lastIndex[0]!=-1&&lastIndex[1]!=-1&&lastIndex[2]!=-1){
-                count=count+Math.min(lastIndex[0],Math.min(lastIndex[1],lastIndex[2]))+1;
+        int[] freq=new int[3];
+        int l=0;
+        int r=0;
+        while(r<n){
+            freq[s.charAt(r)-'a']++;
+            while(freq[0]>0&&freq[1]>0&&freq[2]>0){
+                count+=n-r;
+                freq[s.charAt(l)-'a']--;
+                l++;
             }
+            r++;
         }
         return count;
     }
