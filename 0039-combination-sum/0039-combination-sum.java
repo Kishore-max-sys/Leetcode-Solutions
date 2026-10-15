@@ -13,6 +13,10 @@ class Solution {
             }
             return;
         }
+        if(sum==target){
+            ans.add(new ArrayList<>(list));
+            return;
+        }
         list.add(candidates[ind]);
         sum+=candidates[ind];
         combinationGenerator(ind,candidates,n,sum,target,list,ans);
