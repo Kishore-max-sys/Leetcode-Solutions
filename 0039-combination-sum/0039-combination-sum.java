@@ -6,15 +6,16 @@ class Solution {
         return ans;
     }
     void combinationGenerator(int ind,int[] candidates,int n,int sum,int target,List<Integer> list,List<List<Integer>> ans){
-        if(sum>target) return;
+        if(sum>target){
+            return;
+        }else if(sum==target){
+            ans.add(new ArrayList<>(list));
+            return;
+        }
         if(ind==n){
             if(sum==target){
                 ans.add(new ArrayList<>(list));
             }
-            return;
-        }
-        if(sum==target){
-            ans.add(new ArrayList<>(list));
             return;
         }
         list.add(candidates[ind]);
